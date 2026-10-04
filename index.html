@@ -1,0 +1,2701 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>IRON POWER | Smart Gym Management System</title>
+
+<style>
+
+/* ================================
+   IRON POWER - BLACK & RED THEME
+================================ */
+
+:root {
+    --red: #e00000;
+    --red-light: #ff2020;
+    --black: #050505;
+    --dark: #0d0d0d;
+    --card: #151515;
+    --border: #2a2a2a;
+    --white: #ffffff;
+    --gray: #aaaaaa;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: var(--black);
+    color: var(--white);
+    line-height: 1.5;
+}
+
+button,
+input,
+select {
+    font-family: inherit;
+}
+
+button {
+    cursor: pointer;
+}
+
+button,
+a {
+    text-decoration: none;
+}
+
+.page {
+    display: none;
+    min-height: calc(100vh - 72px);
+}
+
+.page.active {
+    display: block;
+}
+
+/* ================================
+   HEADER
+================================ */
+
+.header {
+    height: 72px;
+    padding: 0 5%;
+    background: rgba(5, 5, 5, 0.98);
+    border-bottom: 1px solid #222;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.logo {
+    background: none;
+    border: none;
+
+    color: white;
+    font-size: 24px;
+    font-weight: 900;
+    letter-spacing: 1px;
+}
+
+.logo span {
+    color: var(--red);
+}
+
+.nav {
+    display: flex;
+    align-items: center;
+    gap: 22px;
+}
+
+.nav button {
+    background: none;
+    border: none;
+    color: #ddd;
+
+    font-size: 12px;
+    font-weight: 800;
+}
+
+.nav button:hover {
+    color: var(--red);
+}
+
+.menu {
+    display: none;
+
+    background: none;
+    border: none;
+
+    color: white;
+    font-size: 26px;
+}
+
+/* ================================
+   BUTTONS
+================================ */
+
+.btn {
+    border: 1px solid var(--red);
+
+    padding: 13px 22px;
+
+    background: transparent;
+    color: white;
+
+    font-size: 11px;
+    font-weight: 900;
+
+    letter-spacing: 1px;
+}
+
+.btn:hover {
+    background: var(--red-light);
+}
+
+.btn.red {
+    background: var(--red);
+}
+
+.full {
+    width: 100%;
+}
+
+/* ================================
+   HERO
+================================ */
+
+.hero {
+    min-height: 650px;
+
+    padding: 80px 8%;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    background:
+        radial-gradient(
+            circle at 78% 45%,
+            #390909 0,
+            #090909 35%,
+            #050505 68%
+        );
+}
+
+.hero-text {
+    max-width: 650px;
+}
+
+.eyebrow {
+    color: var(--red);
+
+    font-size: 12px;
+    font-weight: 900;
+
+    letter-spacing: 3px;
+
+    margin-bottom: 15px;
+}
+
+.hero h1 {
+    font-size: clamp(50px, 8vw, 94px);
+
+    line-height: 0.92;
+
+    letter-spacing: -4px;
+}
+
+.hero h1 span {
+    color: var(--red);
+}
+
+.hero-description {
+    max-width: 560px;
+
+    margin: 24px 0;
+
+    color: #aaa;
+
+    font-size: 17px;
+}
+
+.actions {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+/* ================================
+   HERO LOGO
+================================ */
+
+.hero-mark {
+    width: 300px;
+    height: 300px;
+
+    border: 8px solid var(--red);
+
+    transform: rotate(-7deg);
+
+    display: flex;
+    flex-direction: column;
+
+    align-items: center;
+    justify-content: center;
+
+    box-shadow: 0 0 70px #90000044;
+}
+
+.hero-mark b {
+    font-size: 40px;
+    line-height: 0.9;
+}
+
+.hero-mark p {
+    margin-top: 18px;
+
+    color: #aaa;
+
+    font-size: 10px;
+
+    letter-spacing: 3px;
+}
+
+/* ================================
+   SECTIONS
+================================ */
+
+.section {
+    padding: 80px 8%;
+}
+
+.section.dark {
+    background: var(--dark);
+}
+
+.title {
+    margin-bottom: 35px;
+}
+
+.title p {
+    color: var(--red);
+
+    font-size: 11px;
+    font-weight: 900;
+
+    letter-spacing: 3px;
+}
+
+.title h2 {
+    font-size: 42px;
+
+    line-height: 1.05;
+}
+
+.title h2 span {
+    color: var(--red);
+}
+
+/* ================================
+   CARDS
+================================ */
+
+.grid4 {
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    gap: 16px;
+}
+
+.card {
+    background: var(--card);
+
+    border: 1px solid var(--border);
+
+    padding: 25px;
+}
+
+.card .number {
+    color: var(--red);
+
+    font-weight: 900;
+
+    margin-bottom: 18px;
+}
+
+.card h3 {
+    font-size: 15px;
+}
+
+.card p {
+    color: #999;
+
+    font-size: 13px;
+
+    margin-top: 9px;
+}
+
+/* ================================
+   MEMBERSHIP
+================================ */
+
+.plans {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 18px;
+}
+
+.plan {
+    position: relative;
+}
+
+.plan.featured {
+    border-color: var(--red);
+}
+
+.plan-tag {
+    color: var(--red);
+
+    font-size: 11px;
+
+    font-weight: 900;
+
+    letter-spacing: 2px;
+}
+
+.price {
+    font-size: 45px;
+
+    font-weight: 900;
+
+    margin-top: 7px;
+}
+
+.plan ul {
+    list-style: none;
+
+    margin: 20px 0;
+}
+
+.plan li {
+    padding: 9px 0;
+
+    border-bottom: 1px solid #292929;
+
+    color: #bbb;
+
+    font-size: 13px;
+}
+
+.popular {
+    position: absolute;
+
+    top: 0;
+    right: 0;
+
+    background: var(--red);
+
+    padding: 6px 10px;
+
+    font-size: 9px;
+
+    font-weight: 900;
+}
+
+/* ================================
+   TRAINERS
+================================ */
+
+.trainers {
+    display: grid;
+
+    grid-template-columns:
+        repeat(3, 1fr);
+
+    gap: 18px;
+}
+
+.trainer-image {
+    height: 200px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #350000,
+            #151515
+        );
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    color: var(--red);
+
+    font-size: 65px;
+
+    font-weight: 900;
+}
+
+.trainer h3 {
+    margin-top: 16px;
+}
+
+.trainer p {
+    color: #888;
+
+    font-size: 12px;
+}
+
+/* ================================
+   CALL TO ACTION
+================================ */
+
+.cta {
+    text-align: center;
+
+    padding: 90px 8%;
+
+    background:
+        linear-gradient(
+            90deg,
+            #070707,
+            #250505,
+            #070707
+        );
+}
+
+.cta h2 {
+    font-size: 45px;
+
+    margin: 10px 0 25px;
+}
+
+.cta span {
+    color: var(--red);
+}
+
+/* ================================
+   FORMS
+================================ */
+
+.form-area {
+    max-width: 520px;
+
+    margin: auto;
+
+    padding: 60px 20px;
+}
+
+.form-box {
+    background: #111;
+
+    border: 1px solid #292929;
+
+    padding: 35px;
+}
+
+.form-box h2 {
+    font-size: 38px;
+
+    margin-bottom: 25px;
+}
+
+.form-box h2 span {
+    color: var(--red);
+}
+
+.field {
+    margin: 15px 0;
+}
+
+.field label {
+    display: block;
+
+    color: #aaa;
+
+    font-size: 11px;
+
+    font-weight: 800;
+
+    margin-bottom: 6px;
+}
+
+.field input,
+.field select {
+    width: 100%;
+
+    padding: 13px;
+
+    background: #070707;
+
+    border: 1px solid #333;
+
+    color: white;
+
+    outline: none;
+}
+
+.field input:focus,
+.field select:focus {
+    border-color: var(--red);
+}
+
+.message {
+    margin-top: 15px;
+
+    color: var(--red);
+
+    font-size: 12px;
+}
+
+/* ================================
+   DASHBOARD
+================================ */
+
+.dashboard {
+    padding: 55px 7%;
+}
+
+.dashboard-top {
+    display: flex;
+
+    justify-content: space-between;
+
+    align-items: end;
+
+    margin-bottom: 28px;
+}
+
+.dashboard-top h1 {
+    font-size: 48px;
+}
+
+.dashboard-top h1 span {
+    color: var(--red);
+}
+
+.active-status {
+    color: #36d36c;
+
+    font-size: 11px;
+
+    font-weight: 900;
+}
+
+.stats {
+    display: grid;
+
+    grid-template-columns:
+        repeat(4, 1fr);
+
+    gap: 14px;
+}
+
+.stat {
+    background: var(--card);
+
+    border-left: 3px solid var(--red);
+
+    padding: 22px;
+}
+
+.stat small {
+    display: block;
+
+    color: #777;
+
+    font-size: 9px;
+}
+
+.stat strong {
+    font-size: 19px;
+}
+
+.dashboard-grid {
+    display: grid;
+
+    grid-template-columns:
+        1fr 1fr;
+
+    gap: 18px;
+
+    margin-top: 18px;
+}
+
+.dashboard-box {
+    background: var(--card);
+
+    border: 1px solid var(--border);
+
+    padding: 25px;
+}
+
+.dashboard-box h3 {
+    margin-bottom: 15px;
+}
+
+.action {
+    display: block;
+
+    width: 100%;
+
+    text-align: left;
+
+    background: none;
+
+    border: none;
+
+    border-bottom: 1px solid #292929;
+
+    color: #bbb;
+
+    padding: 13px 0;
+}
+
+.action:hover {
+    color: var(--red);
+}
+
+/* ================================
+   TABLE
+================================ */
+
+.table {
+    width: 100%;
+
+    border-collapse: collapse;
+
+    font-size: 12px;
+}
+
+.table th,
+.table td {
+    text-align: left;
+
+    padding: 11px;
+
+    border-bottom: 1px solid #292929;
+}
+
+.table th {
+    color: var(--red);
+}
+
+/* ================================
+   MODAL
+================================ */
+
+.modal {
+    display: none;
+
+    position: fixed;
+
+    inset: 0;
+
+    background: #000b;
+
+    z-index: 200;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 20px;
+}
+
+.modal.show {
+    display: flex;
+}
+
+.modal-box {
+    width: 100%;
+
+    max-width: 600px;
+
+    max-height: 85vh;
+
+    overflow: auto;
+
+    background: #111;
+
+    border: 1px solid #333;
+
+    padding: 30px;
+}
+
+.close {
+    float: right;
+
+    background: none;
+
+    border: none;
+
+    color: #aaa;
+
+    font-size: 22px;
+}
+
+/* ================================
+   FOOTER
+================================ */
+
+footer {
+    padding: 25px 7%;
+
+    border-top: 1px solid #222;
+
+    color: #777;
+
+    font-size: 11px;
+
+    display: flex;
+
+    justify-content: space-between;
+}
+
+/* ================================
+   MOBILE
+================================ */
+
+@media(max-width:850px) {
+
+    .nav {
+        display: none;
+    }
+
+    .nav.open {
+        display: flex;
+
+        position: absolute;
+
+        top: 72px;
+
+        left: 0;
+
+        right: 0;
+
+        background: #090909;
+
+        flex-direction: column;
+
+        padding: 20px;
+    }
+
+    .menu {
+        display: block;
+    }
+
+    .hero {
+        flex-direction: column;
+
+        text-align: center;
+
+        gap: 55px;
+    }
+
+    .hero-description {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .actions {
+        justify-content: center;
+    }
+
+    .hero-mark {
+        width: 230px;
+        height: 230px;
+    }
+
+    .hero-mark b {
+        font-size: 30px;
+    }
+
+    .grid4,
+    .plans,
+    .trainers,
+    .stats,
+    .dashboard-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .cta h2 {
+        font-size: 35px;
+    }
+
+    .dashboard-top {
+        flex-direction: column;
+
+        align-items: flex-start;
+
+        gap: 10px;
+    }
+
+    footer {
+        flex-direction: column;
+
+        gap: 10px;
+
+        text-align: center;
+    }
+}
+
+</style>
+</head>
+
+
+<body>
+
+
+<!-- =====================================
+     HEADER
+===================================== -->
+
+<header class="header">
+
+    <button
+        class="logo"
+        onclick="showPage('home')">
+
+        <span>IRON</span> POWER
+
+    </button>
+
+
+    <button
+        class="menu"
+        onclick="toggleMenu()">
+
+        ☰
+
+    </button>
+
+
+    <nav
+        id="navigation"
+        class="nav">
+
+        <button onclick="showPage('home')">
+            HOME
+        </button>
+
+        <button onclick="showPage('about')">
+            ABOUT
+        </button>
+
+        <button onclick="showPage('plans')">
+            PLANS
+        </button>
+
+        <button onclick="showPage('trainers')">
+            TRAINERS
+        </button>
+
+        <button onclick="showPage('login')">
+            LOGIN
+        </button>
+
+        <button
+            class="btn red"
+            onclick="showPage('register')">
+
+            JOIN NOW
+
+        </button>
+
+    </nav>
+
+</header>
+
+
+<!-- =====================================
+     HOME PAGE
+===================================== -->
+
+<section
+    id="home"
+    class="page active">
+
+
+    <div class="hero">
+
+
+        <div class="hero-text">
+
+
+            <div class="eyebrow">
+
+                WELCOME TO IRON POWER
+
+            </div>
+
+
+            <h1>
+
+                BUILD YOUR
+
+                <br>
+
+                <span>POWER.</span>
+
+            </h1>
+
+
+            <p class="hero-description">
+
+                A modern gym registration and
+                management system for members,
+                trainers, memberships, attendance
+                and fees.
+
+            </p>
+
+
+            <div class="actions">
+
+
+                <button
+                    class="btn red"
+                    onclick="showPage('register')">
+
+                    JOIN NOW
+
+                </button>
+
+
+                <button
+                    class="btn"
+                    onclick="showPage('plans')">
+
+                    VIEW PLANS
+
+                </button>
+
+
+            </div>
+
+
+        </div>
+
+
+        <div class="hero-mark">
+
+            <b>IRON</b>
+
+            <b>POWER</b>
+
+            <p>
+                NO EXCUSES.
+                ONLY RESULTS.
+            </p>
+
+        </div>
+
+
+    </div>
+
+
+    <div class="section">
+
+
+        <div class="title">
+
+            <p>WHY IRON POWER</p>
+
+            <h2>
+
+                TRAIN.
+                TRACK.
+
+                <span>
+                    TRANSFORM.
+                </span>
+
+            </h2>
+
+        </div>
+
+
+        <div class="grid4">
+
+
+            <div class="card">
+
+                <div class="number">
+                    01
+                </div>
+
+                <h3>
+                    SMART MEMBERSHIP
+                </h3>
+
+                <p>
+                    Manage plans,
+                    memberships and
+                    fees from one system.
+                </p>
+
+            </div>
+
+
+            <div class="card">
+
+                <div class="number">
+                    02
+                </div>
+
+                <h3>
+                    ATTENDANCE
+                </h3>
+
+                <p>
+                    Record gym visits
+                    and maintain organized
+                    attendance.
+                </p>
+
+            </div>
+
+
+            <div class="card">
+
+                <div class="number">
+                    03
+                </div>
+
+                <h3>
+                    TRAINERS
+                </h3>
+
+                <p>
+                    Keep trainer information
+                    available for members.
+                </p>
+
+            </div>
+
+
+            <div class="card">
+
+                <div class="number">
+                    04
+                </div>
+
+                <h3>
+                    REPORTS
+                </h3>
+
+                <p>
+                    View member, fee and
+                    attendance information.
+                </p>
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+
+    <div class="cta">
+
+
+        <p class="eyebrow">
+            READY?
+        </p>
+
+
+        <h2>
+
+            YOUR
+
+            <span>
+                POWER
+            </span>
+
+            STARTS HERE.
+
+        </h2>
+
+
+        <button
+            class="btn red"
+            onclick="showPage('register')">
+
+            CREATE ACCOUNT
+
+        </button>
+
+
+    </div>
+
+
+</section>
+
+
+<!-- =====================================
+     ABOUT PAGE
+===================================== -->
+
+<section
+    id="about"
+    class="page">
+
+
+    <div class="section">
+
+
+        <div class="title">
+
+            <p>
+                ABOUT US
+            </p>
+
+            <h2>
+
+                IRON
+
+                <span>
+                    POWER.
+                </span>
+
+            </h2>
+
+        </div>
+
+
+        <div class="card">
+
+
+            <p
+                style="
+                font-size:17px;
+                color:#bbb;
+                ">
+
+                IRON POWER is a smart gym
+                registration and management
+                system designed to digitize
+                gym operations.
+
+                It brings member registration,
+                trainers, memberships,
+                attendance, fees and reports
+                into one easy-to-use interface.
+
+            </p>
+
+
+        </div>
+
+
+    </div>
+
+
+    <div class="section dark">
+
+
+        <div class="title">
+
+            <p>
+                SYSTEM FEATURES
+            </p>
+
+            <h2>
+
+                EVERYTHING IN
+
+                <span>
+                    ONE PLACE.
+                </span>
+
+            </h2>
+
+        </div>
+
+
+        <div class="grid4">
+
+
+            <div class="card">
+
+                <h3>
+                    USER REGISTRATION
+                </h3>
+
+                <p>
+                    Create and manage
+                    member accounts.
+                </p>
+
+            </div>
+
+
+            <div class="card">
+
+                <h3>
+                    ADMIN DASHBOARD
+                </h3>
+
+                <p>
+                    Central view of
+                    gym activity.
+                </p>
+
+            </div>
+
+
+            <div class="card">
+
+                <h3>
+                    MEMBERSHIP PLANS
+                </h3>
+
+                <p>
+                    Track plans and
+                    membership status.
+                </p>
+
+            </div>
+
+
+            <div class="card">
+
+                <h3>
+                    FEE TRACKING
+                </h3>
+
+                <p>
+                    Maintain payment
+                    and fee information.
+                </p>
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+
+</section>
+
+
+<!-- =====================================
+     PLANS PAGE
+===================================== -->
+
+<section
+    id="plans"
+    class="page">
+
+
+    <div class="section">
+
+
+        <div class="title">
+
+            <p>
+                MEMBERSHIP
+            </p>
+
+            <h2>
+
+                CHOOSE YOUR
+
+                <span>
+                    PLAN.
+                </span>
+
+            </h2>
+
+        </div>
+
+
+        <div class="plans">
+
+
+            <div class="card plan">
+
+
+                <p class="plan-tag">
+                    STARTER
+                </p>
+
+
+                <div class="price">
+                    ₹999
+                </div>
+
+
+                <small>
+                    / MONTH
+                </small>
+
+
+                <ul>
+
+                    <li>
+                        Gym Access
+                    </li>
+
+                    <li>
+                        Attendance Tracking
+                    </li>
+
+                    <li>
+                        Basic Support
+                    </li>
+
+                </ul>
+
+
+                <button
+                    class="btn"
+                    onclick="
+                    selectPlan(
+                    'Starter - ₹999/month'
+                    )">
+
+                    SELECT PLAN
+
+                </button>
+
+
+            </div>
+
+
+            <div
+                class="
+                card
+                plan
+                featured
+                ">
+
+
+                <div class="popular">
+
+                    POPULAR
+
+                </div>
+
+
+                <p class="plan-tag">
+                    POWER
+                </p>
+
+
+                <div class="price">
+                    ₹1,999
+                </div>
+
+
+                <small>
+                    / MONTH
+                </small>
+
+
+                <ul>
+
+                    <li>
+                        Unlimited Gym Access
+                    </li>
+
+                    <li>
+                        Trainer Support
+                    </li>
+
+                    <li>
+                        Progress Tracking
+                    </li>
+
+                    <li>
+                        Priority Support
+                    </li>
+
+                </ul>
+
+
+                <button
+                    class="btn red"
+                    onclick="
+                    selectPlan(
+                    'Power - ₹1,999/month'
+                    )">
+
+                    SELECT PLAN
+
+                </button>
+
+
+            </div>
+
+
+            <div class="card plan">
+
+
+                <p class="plan-tag">
+                    ELITE
+                </p>
+
+
+                <div class="price">
+                    ₹2,999
+                </div>
+
+
+                <small>
+                    / MONTH
+                </small>
+
+
+                <ul>
+
+                    <li>
+                        All Power Benefits
+                    </li>
+
+                    <li>
+                        Personal Training
+                    </li>
+
+                    <li>
+                        Advanced Reports
+                    </li>
+
+                </ul>
+
+
+                <button
+                    class="btn"
+                    onclick="
+                    selectPlan(
+                    'Elite - ₹2,999/month'
+                    )">
+
+                    SELECT PLAN
+
+                </button>
+
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+
+</section>
+
+
+<!-- =====================================
+     TRAINERS PAGE
+===================================== -->
+
+<section
+    id="trainers"
+    class="page">
+
+
+    <div class="section">
+
+
+        <div class="title">
+
+            <p>
+                OUR TEAM
+            </p>
+
+            <h2>
+
+                MEET THE
+
+                <span>
+                    TRAINERS.
+                </span>
+
+            </h2>
+
+        </div>
+
+
+        <div class="trainers">
+
+
+            <div class="card trainer">
+
+
+                <div class="trainer-image">
+                    01
+                </div>
+
+
+                <h3>
+                    ARJUN SHARMA
+                </h3>
+
+
+                <p>
+                    Strength Coach
+                </p>
+
+
+            </div>
+
+
+            <div class="card trainer">
+
+
+                <div class="trainer-image">
+                    02
+                </div>
+
+
+                <h3>
+                    ROHAN PATEL
+                </h3>
+
+
+                <p>
+                    Fitness Trainer
+                </p>
+
+
+            </div>
+
+
+            <div class="card trainer">
+
+
+                <div class="trainer-image">
+                    03
+                </div>
+
+
+                <h3>
+                    VIKRAM SINGH
+                </h3>
+
+
+                <p>
+                    Personal Trainer
+                </p>
+
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+
+</section>
+
+
+<!-- =====================================
+     REGISTER PAGE
+===================================== -->
+
+<section
+    id="register"
+    class="page">
+
+
+    <div class="form-area">
+
+
+        <div class="form-box">
+
+
+            <div class="eyebrow">
+
+                IRON POWER MEMBERSHIP
+
+            </div>
+
+
+            <h2>
+
+                JOIN THE
+
+                <span>
+                    POWER.
+                </span>
+
+            </h2>
+
+
+            <form
+                onsubmit="
+                registerUser(event)
+                ">
+
+
+                <div class="field">
+
+                    <label>
+                        FULL NAME
+                    </label>
+
+                    <input
+                        id="registerName"
+                        type="text"
+                        placeholder="Enter your name"
+                        required>
+
+                </div>
+
+
+                <div class="field">
+
+                    <label>
+                        EMAIL
+                    </label>
+
+                    <input
+                        id="registerEmail"
+                        type="email"
+                        placeholder="Enter your email"
+                        required>
+
+                </div>
+
+
+                <div class="field">
+
+                    <label>
+                        PHONE
+                    </label>
+
+                    <input
+                        id="registerPhone"
+                        type="tel"
+                        placeholder="Enter your phone"
+                        required>
+
+                </div>
+
+
+                <div class="field">
+
+                    <label>
+                        MEMBERSHIP
+                    </label>
+
+                    <select id="registerPlan">
+
+                        <option>
+                            Starter - ₹999/month
+                        </option>
+
+                        <option selected>
+                            Power - ₹1,999/month
+                        </option>
+
+                        <option>
+                            Elite - ₹2,999/month
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <div class="field">
+
+                    <label>
+                        PASSWORD
+                    </label>
+
+                    <input
+                        id="registerPassword"
+                        type="password"
+                        placeholder="Create password"
+                        required>
+
+                </div>
+
+
+                <button
+                    class="btn red full">
+
+                    CREATE ACCOUNT
+
+                </button>
+
+
+                <p
+                    id="registerMessage"
+                    class="message">
+                </p>
+
+
+            </form>
+
+
+        </div>
+
+
+    </div>
+
+
+</section>
+
+
+<!-- =====================================
+     LOGIN PAGE
+===================================== -->
+
+<section
+    id="login"
+    class="page">
+
+
+    <div class="form-area">
+
+
+        <div class="form-box">
+
+
+            <div class="eyebrow">
+
+                MEMBER LOGIN
+
+            </div>
+
+
+            <h2>
+
+                WELCOME
+
+                <span>
+                    BACK.
+                </span>
+
+            </h2>
+
+
+            <form
+                onsubmit="
+                loginUser(event)
+                ">
+
+
+                <div class="field">
+
+                    <label>
+                        EMAIL
+                    </label>
+
+                    <input
+                        id="loginEmail"
+                        type="email"
+                        placeholder="Enter your email"
+                        required>
+
+                </div>
+
+
+                <div class="field">
+
+                    <label>
+                        PASSWORD
+                    </label>
+
+                    <input
+                        id="loginPassword"
+                        type="password"
+                        placeholder="Enter your password"
+                        required>
+
+                </div>
+
+
+                <button
+                    class="btn red full">
+
+                    LOGIN
+
+                </button>
+
+
+                <p
+                    id="loginMessage"
+                    class="message">
+                </p>
+
+
+            </form>
+
+
+        </div>
+
+
+    </div>
+
+
+</section>
+
+
+<!-- =====================================
+     DASHBOARD
+===================================== -->
+
+<section
+    id="dashboard"
+    class="page">
+
+
+    <div class="dashboard">
+
+
+        <div class="dashboard-top">
+
+
+            <div>
+
+                <div class="eyebrow">
+                    MEMBER DASHBOARD
+                </div>
+
+
+                <h1>
+
+                    WELCOME,
+
+                    <span id="dashboardName">
+                        MEMBER
+                    </span>
+
+                </h1>
+
+            </div>
+
+
+            <div class="active-status">
+
+                ● ACTIVE MEMBER
+
+            </div>
+
+
+        </div>
+
+
+        <div class="stats">
+
+
+            <div class="stat">
+
+                <small>
+                    MEMBERSHIP
+                </small>
+
+                <strong id="dashboardPlan">
+                    POWER
+                </strong>
+
+            </div>
+
+
+            <div class="stat">
+
+                <small>
+                    ATTENDANCE
+                </small>
+
+                <strong id="dashboardAttendance">
+                    0 DAYS
+                </strong>
+
+            </div>
+
+
+            <div class="stat">
+
+                <small>
+                    FEE STATUS
+                </small>
+
+                <strong>
+                    PAID
+                </strong>
+
+            </div>
+
+
+            <div class="stat">
+
+                <small>
+                    STATUS
+                </small>
+
+                <strong>
+                    ACTIVE
+                </strong>
+
+            </div>
+
+
+        </div>
+
+
+        <div class="dashboard-grid">
+
+
+            <div class="dashboard-box">
+
+
+                <h3>
+                    QUICK ACTIONS
+                </h3>
+
+
+                <button
+                    class="action"
+                    onclick="
+                    markAttendance()
+                    ">
+
+                    ✓ Mark Today's Attendance
+
+                </button>
+
+
+                <button
+                    class="action"
+                    onclick="
+                    showFeeDetails()
+                    ">
+
+                    ₹ View Fee Details
+
+                </button>
+
+
+                <button
+                    class="action"
+                    onclick="
+                    showMemberReport()
+                    ">
+
+                    ▣ View Member Report
+
+                </button>
+
+
+                <button
+                    class="action"
+                    onclick="
+                    showPage('plans')
+                    ">
+
+                    ↗ Change Membership Plan
+
+                </button>
+
+
+            </div>
+
+
+            <div class="dashboard-box">
+
+
+                <h3>
+                    MEMBER INFORMATION
+                </h3>
+
+
+                <table class="table">
+
+
+                    <tr>
+
+                        <th>
+                            NAME
+                        </th>
+
+                        <td id="infoName">
+                            -
+                        </td>
+
+                    </tr>
+
+
+                    <tr>
+
+                        <th>
+                            EMAIL
+                        </th>
+
+                        <td id="infoEmail">
+                            -
+                        </td>
+
+                    </tr>
+
+
+                    <tr>
+
+                        <th>
+                            PHONE
+                        </th>
+
+                        <td id="infoPhone">
+                            -
+                        </td>
+
+                    </tr>
+
+
+                    <tr>
+
+                        <th>
+                            PLAN
+                        </th>
+
+                        <td id="infoPlan">
+                            -
+                        </td>
+
+                    </tr>
+
+
+                </table>
+
+
+            </div>
+
+
+        </div>
+
+
+    </div>
+
+
+</section>
+
+
+<!-- =====================================
+     MODAL
+===================================== -->
+
+<div
+    id="modal"
+    class="modal">
+
+
+    <div class="modal-box">
+
+
+        <button
+            class="close"
+            onclick="
+            closeModal()
+            ">
+
+            ×
+
+        </button>
+
+
+        <div id="modalContent">
+
+        </div>
+
+
+    </div>
+
+
+</div>
+
+
+<!-- =====================================
+     FOOTER
+===================================== -->
+
+<footer>
+
+
+    <div class="logo">
+
+        <span>
+            IRON
+        </span>
+
+        POWER
+
+    </div>
+
+
+    <div>
+
+        SMART GYM REGISTRATION
+        & MANAGEMENT SYSTEM
+
+        © 2026
+
+    </div>
+
+
+</footer>
+
+
+<script>
+
+/* =====================================
+   PAGE NAVIGATION
+===================================== */
+
+function showPage(pageId) {
+
+    const pages =
+        document.querySelectorAll(".page");
+
+    pages.forEach(function(page) {
+
+        page.classList.remove("active");
+
+    });
+
+
+    const selectedPage =
+        document.getElementById(pageId);
+
+    if (selectedPage) {
+
+        selectedPage.classList.add("active");
+
+    }
+
+
+    document
+        .getElementById("navigation")
+        .classList.remove("open");
+
+
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+
+
+    if (pageId === "dashboard") {
+
+        loadDashboard();
+
+    }
+
+}
+
+
+/* =====================================
+   MOBILE MENU
+===================================== */
+
+function toggleMenu() {
+
+    document
+        .getElementById("navigation")
+        .classList.toggle("open");
+
+}
+
+
+/* =====================================
+   MEMBERSHIP PLAN
+===================================== */
+
+function selectPlan(plan) {
+
+    document
+        .getElementById("registerPlan")
+        .value = plan;
+
+
+    showPage("register");
+
+}
+
+
+/* =====================================
+   REGISTER USER
+===================================== */
+
+function registerUser(event) {
+
+    event.preventDefault();
+
+
+    const name =
+        document.getElementById(
+            "registerName"
+        ).value;
+
+
+    const email =
+        document.getElementById(
+            "registerEmail"
+        ).value;
+
+
+    const phone =
+        document.getElementById(
+            "registerPhone"
+        ).value;
+
+
+    const plan =
+        document.getElementById(
+            "registerPlan"
+        ).value;
+
+
+    const password =
+        document.getElementById(
+            "registerPassword"
+        ).value;
+
+
+    const member = {
+
+        name: name,
+
+        email: email,
+
+        phone: phone,
+
+        plan: plan,
+
+        password: password,
+
+        attendance: 0,
+
+        feeStatus: "PAID"
+
+    };
+
+
+    localStorage.setItem(
+        "ironPowerMember",
+        JSON.stringify(member)
+    );
+
+
+    document.getElementById(
+        "registerMessage"
+    ).textContent =
+        "Account created successfully!";
+
+
+    setTimeout(function() {
+
+        showPage("dashboard");
+
+    }, 700);
+
+}
+
+
+/* =====================================
+   LOGIN
+===================================== */
+
+function loginUser(event) {
+
+    event.preventDefault();
+
+
+    const email =
+        document.getElementById(
+            "loginEmail"
+        ).value;
+
+
+    const password =
+        document.getElementById(
+            "loginPassword"
+        ).value;
+
+
+    const storedMember =
+        localStorage.getItem(
+            "ironPowerMember"
+        );
+
+
+    if (!storedMember) {
+
+        document.getElementById(
+            "loginMessage"
+        ).textContent =
+            "No account found. Please register first.";
+
+        return;
+
+    }
+
+
+    const member =
+        JSON.parse(storedMember);
+
+
+    if (
+        member.email === email &&
+        member.password === password
+    ) {
+
+        showPage("dashboard");
+
+    }
+
+    else {
+
+        document.getElementById(
+            "loginMessage"
+        ).textContent =
+            "Invalid email or password.";
+
+    }
+
+}
+
+
+/* =====================================
+   DASHBOARD
+===================================== */
+
+function loadDashboard() {
+
+    const storedMember =
+        localStorage.getItem(
+            "ironPowerMember"
+        );
+
+
+    if (!storedMember) {
+
+        showPage("register");
+
+        return;
+
+    }
+
+
+    const member =
+        JSON.parse(storedMember);
+
+
+    document.getElementById(
+        "dashboardName"
+    ).textContent =
+        member.name
+            .split(" ")[0]
+            .toUpperCase();
+
+
+    document.getElementById(
+        "dashboardPlan"
+    ).textContent =
+        member.plan
+            .split(" - ")[0]
+            .toUpperCase();
+
+
+    document.getElementById(
+        "dashboardAttendance"
+    ).textContent =
+        (member.attendance || 0)
+        + " DAYS";
+
+
+    document.getElementById(
+        "infoName"
+    ).textContent =
+        member.name;
+
+
+    document.getElementById(
+        "infoEmail"
+    ).textContent =
+        member.email;
+
+
+    document.getElementById(
+        "infoPhone"
+    ).textContent =
+        member.phone;
+
+
+    document.getElementById(
+        "infoPlan"
+    ).textContent =
+        member.plan;
+
+}
+
+
+/* =====================================
+   ATTENDANCE
+===================================== */
+
+function markAttendance() {
+
+    const storedMember =
+        localStorage.getItem(
+            "ironPowerMember"
+        );
+
+
+    if (!storedMember) {
+
+        return;
+
+    }
+
+
+    const member =
+        JSON.parse(storedMember);
+
+
+    const today =
+        new Date()
+            .toISOString()
+            .slice(0, 10);
+
+
+    let attendance =
+        JSON.parse(
+            localStorage.getItem(
+                "ironPowerAttendance"
+            ) || "[]"
+        );
+
+
+    if (
+        attendance.includes(today)
+    ) {
+
+        alert(
+            "Attendance is already marked for today."
+        );
+
+        return;
+
+    }
+
+
+    attendance.push(today);
+
+
+    member.attendance =
+        attendance.length;
+
+
+    localStorage.setItem(
+        "ironPowerAttendance",
+        JSON.stringify(attendance)
+    );
+
+
+    localStorage.setItem(
+        "ironPowerMember",
+        JSON.stringify(member)
+    );
+
+
+    loadDashboard();
+
+
+    alert(
+        "Today's attendance has been marked!"
+    );
+
+}
+
+
+/* =====================================
+   FEE DETAILS
+===================================== */
+
+function showFeeDetails() {
+
+    const member =
+        JSON.parse(
+            localStorage.getItem(
+                "ironPowerMember"
+            ) || "{}"
+        );
+
+
+    const plan =
+        member.plan ||
+        "Power - ₹1,999/month";
+
+
+    openModal(`
+
+        <div class="eyebrow">
+            FEE DETAILS
+        </div>
+
+
+        <h2>
+            MEMBERSHIP FEE
+        </h2>
+
+
+        <p
+            style="
+            color:#bbb;
+            margin:20px 0;
+            ">
+
+            Current Plan:
+
+            <strong
+                style="
+                color:#e00000;
+                ">
+
+                ${plan}
+
+            </strong>
+
+        </p>
+
+
+        <p
+            style="
+            color:#36d36c;
+            font-weight:900;
+            ">
+
+            ● PAYMENT STATUS:
+            PAID
+
+        </p>
+
+    `);
+
+}
+
+
+/* =====================================
+   MEMBER REPORT
+===================================== */
+
+function showMemberReport() {
+
+    const member =
+        JSON.parse(
+            localStorage.getItem(
+                "ironPowerMember"
+            ) || "{}"
+        );
+
+
+    openModal(`
+
+        <div class="eyebrow">
+            MEMBER REPORT
+        </div>
+
+
+        <h2>
+            ${(member.name || "MEMBER").toUpperCase()}
+        </h2>
+
+
+        <table class="table">
+
+
+            <tr>
+
+                <th>
+                    PLAN
+                </th>
+
+                <td>
+                    ${member.plan || "-"}
+                </td>
+
+            </tr>
+
+
+            <tr>
+
+                <th>
+                    ATTENDANCE
+                </th>
+
+                <td>
+                    ${member.attendance || 0}
+                    DAYS
+                </td>
+
+            </tr>
+
+
+            <tr>
+
+                <th>
+                    FEE STATUS
+                </th>
+
+                <td>
+                    ${member.feeStatus || "PAID"}
+                </td>
+
+            </tr>
+
+
+        </table>
+
+    `);
+
+}
+
+
+/* =====================================
+   MODAL
+===================================== */
+
+function openModal(content) {
+
+    document.getElementById(
+        "modalContent"
+    ).innerHTML = content;
+
+
+    document.getElementById(
+        "modal"
+    ).classList.add("show");
+
+}
+
+
+function closeModal() {
+
+    document.getElementById(
+        "modal"
+    ).classList.remove("show");
+
+}
+
+</script>
+
+
+</body>
+</html>
+```
